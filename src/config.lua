@@ -1,5 +1,6 @@
 return {
   version = 0;
   enabled = true;
-  message = 'Hello World!';
+  BoonTakenFlag = false;
+  NumberOfChoices = 5;
 }

@@ -1,22 +1,22 @@
 ---@meta _
--- globals we define are private to our plugin!
 ---@diagnostic disable: lowercase-global
 
--- here is where your mod sets up all the things it will do.
--- this file will not be reloaded if it changes during gameplay
--- 	so you will most likely want to have it reference
---	values and functions later defined in `reload.lua`.
-
-local file = rom.path.combine(rom.paths.Content, 'Game/Text/en/ShellText.en.sjson')
-
-sjson.hook(file, function(data)
-	return sjson_ShellText(data)
+modutil.mod.Path.Wrap("ChooseStartingRoom", function(base, ...)
+	return ChooseStartingRoom_wrap(base, ...)
 end)
 
-modutil.mod.Path.Wrap("SetupMap", function(base)
-	return wrap_SetupMap(base)
+modutil.mod.Path.Wrap("CreateLoot", function(base, args)
+	return CreateLoot_wrap( base, args )
 end)
 
-game.OnControlPressed({'Gift', function()
-	return trigger_Gift()
-end})
+modutil.mod.Path.Wrap("HandleUpgradeChoiceSelection", function(base, screen, button, args)
+	return HandleUpgradeChoiceSelection_wrap(base, screen, button, args)
+end)
+
+modutil.mod.Path.Wrap("CalcNumLootChoices", function(base, isGodLoot, treatAsGodLootByShops)
+	return CalcNumLootChoices_wrap( base, isGodLoot, treatAsGodLootByShops )
+end)
+
+modutil.mod.Path.Wrap("DestroyBoonLootButtons", function(base, screen, lootData)
+	return DestroyBoonLootButtons_wrap( base, screen, lootData )
+end)

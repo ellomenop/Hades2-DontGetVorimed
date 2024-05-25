@@ -4,9 +4,9 @@ schemaVersion = "0.0.1"
 
 [package]
 namespace = "ellomenop"
-name = "FourStartingChoices"
-versionNumber = "0.0.0"
-description = "Provides all four basic boons from the first boon reward."
+name = "MoreStartingBoonChoices"
+versionNumber = "0.0.1"
+description = "Provides all basic boons from the first boon reward."
 websiteUrl = "https://github.com/ellomenop/Hades2-DontGetVorimed"
 containsNsfwContent = false
 
@@ -15,9 +15,8 @@ Hell2Modding-Hell2Modding = "1.0.26"
 SGG_Modding-ENVY = "1.0.0"
 SGG_Modding-Chalk = "2.0.2"
 SGG_Modding-ReLoad = "1.0.1"
-SGG_Modding-SJSON = "1.0.0"
 SGG_Modding-ModUtil = "3.1.0"
-
+ellomenop-LootChoiceExtension = "0.0.3"
 
 [build]
 icon = "./icon.png"
