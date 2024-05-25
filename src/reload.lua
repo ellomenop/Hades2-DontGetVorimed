@@ -4,11 +4,10 @@
 -- When the first room is created, set the number of loot choices to 5
 -- This will persist until the first boon reward is received or rolled over
 function ChooseStartingRoom_wrap( base, ... )
-	print("ChooseStartingRoom")
-    if config.Enabled then
-        rom.mods['ellomenop-LootChoiceExtension'].config.Choices = config.NumberOfChoices
-        config.BoonTakenFlag = false
-    end
+	print("ChooseStartingRoom - setting number of choices to " .. tostring(config.NumberOfChoices))
+    rom.mods['ellomenop-LootChoiceExtension'].config.Choices = config.NumberOfChoices
+    rom.mods['ellomenop-LootChoiceExtension'].config.LastLootChoices = config.NumberOfChoices
+    config.BoonTakenFlag = false
     return base(...)
 end
 
@@ -29,11 +28,13 @@ end
 function HandleUpgradeChoiceSelection_wrap( base, screen, button, args )
 	print("HandleUpgradeChoiceSelection, boon taken: " .. tostring(config.BoonTakenFlag) .. ", upgradeableGodTraits: " .. tostring(#GetAllUpgradeableGodTraits()))
     if not config.BoonTakenFlag and #GetAllUpgradeableGodTraits() == 0 then
-        if button.LootData.GodLoot ~= nil then
+        if button.LootData.GodLoot ~= nil and button.LootData.GodLoot == true then
+			print("First god boon selected, setting choices to 3")
             rom.mods['ellomenop-LootChoiceExtension'].config.Choices = 3
             rom.mods['ellomenop-LootChoiceExtension'].config.LastLootChoices = 3
             config.BoonTakenFlag = true
         else
+			print("Some non-god boon selected, setting choices to " .. config.NumberOfChoices)
             -- reset to 5 options after selecting a hammer/chaos before first boon has been taken
             rom.mods['ellomenop-LootChoiceExtension'].config.Choices = config.NumberOfChoices
             rom.mods['ellomenop-LootChoiceExtension'].config.LastLootChoices = config.NumberOfChoices

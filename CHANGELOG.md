@@ -7,6 +7,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ## [Unreleased]
 
+### Fixed
+
+- Fixed BoonTakenFlag resetting on run start and added logging
+
 ## [0.0.1] - 2024-05-25
 
 ### Added
